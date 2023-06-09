@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/default.css')}}">
+    <title>{% if title %}{{title}}{% else %} VOYAGE EN COMMUN {% endif %}</title>
+    {% block style %}
+    <style>
+        header{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: var(--black);
+            padding: 10px 20px;
+            min-height: 90px;
+        }
+
+        .logo{
+            color: #fff;
+            font-size: 3em;
+            font-family: Poppins, 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .navigation{
+            display: flex;
+            flex-grow: 1;
+            max-width: 60%;
+            justify-content: space-around;
+        }
+
+        .navigation li a{
+            color: #fff;
+            font-size: 1.2em;
+        }
+
+        .navigation li a:hover{
+            color: #ffffffe4;
+            font-weight: 200;
+            transition: all 0.2s ease-in-out;
+            text-shadow: 1px 1px 1px #000;
+        }
+
+        form{
+            width: 100%;
+            max-width: 700px;
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px 2px #0000003d;
+            border-radius: 5px;
+            padding: 20px;
+            gap: 2em;
+        }
+    </style>
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <a href="{{url_for('home')}}" class="logo">V.C</a>
+        <ul class="navigation">
+            <li><a href="{{url_for('page_ville')}}">Ajouter une ville</a></li>
+            <li><a href="{{url_for('page_villes')}}">Liste des villes</a></li>
+            <li><a href="{{url_for('page_voyage')}}">Définir un voyage</a></li>
+            <li><a href="{{url_for('page_voyages')}}">Listes des voyages</a></li>
+            <li><a href="{{url_for('page_verifier')}}">Vérifier voyage</a></li>
+        </ul>
+    </header>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class=flashes>
+    {% for category, message in messages %}
+      <p class="{{ category }}">{{ message }}</p>
+    {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+    <main>
+    {% block content %}
+
+    {% endblock %}
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>

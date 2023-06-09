@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block style %}
+{{super()}}
+    <style>
+        h1{
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+{% block content %}
+    <form action="" method="post">
+        <h1>Ajouter une ville</h1>
+        <div class="group">
+            <label for="v">Nom de la ville</label>
+            <input required type="text" name="ville" id="v">
+        </div>
+        <button class="info" type="submit">Enregistrer la ville</button>
+    </form>
+{% endblock %}
